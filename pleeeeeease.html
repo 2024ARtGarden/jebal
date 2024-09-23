@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLTF Viewer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -20,10 +20,17 @@
         document.body.appendChild(renderer.domElement);
 
         const loader = new THREE.GLTFLoader();
-        loader.load('https://raw.githubusercontent.com/2024ARtGarden/raw/refs/heads/main/test06_pleaseee/SampleScene.gltf', function(gltf) {
-            scene.add(gltf.scene);
-            renderer.render(scene, camera);
-        });
+        loader.load(
+            'https://raw.githubusercontent.com/2024ARtGarden/raw/refs/heads/main/test06_pleaseee/SampleScene.gltf',
+            function (gltf) {
+                scene.add(gltf.scene);
+                renderer.render(scene, camera);
+            },
+            undefined,
+            function (error) {
+                console.error('An error happened:', error);
+            }
+        );
 
         camera.position.z = 5;
 
